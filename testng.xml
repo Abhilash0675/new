@@ -1,0 +1,91 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "Sales Module" thread-count="2" parallel="tests" verbose="1">
+	<listeners>
+	       <listener class-name="com.avesdo.tests.utils.listeners.TestListener"/>
+	       <listener class-name="com.avesdo.tests.utils.listeners.AnnotationTransformer"/>
+	 </listeners>
+
+	<test name = "Chrome Based" preserve-order="true" parallel="false" verbose="1">
+		<parameter name="browser" value="Chrome"/>
+	  	<classes>
+
+	   		<class name = "com.avesdo.tests.cases.TestAddStaff">
+	   			<parameter name="execution" value="Mandatory"/>
+	   		</class>	  		
+			 
+	   		<class name = "com.avesdo.tests.cases.TestCreateNewDeal">
+	   			<parameter name="execution" value="Mandatory"/>
+	   		</class>
+	   			   		
+	   		<class name = "com.avesdo.tests.cases.TestBuyerSignDeal">
+	   			<parameter name="execution" value="Mandatory"/>
+	   			<parameter name="sheet" value="Login Buyer 1"/>
+	   		</class>	
+
+	   		<class name = "com.avesdo.tests.cases.TestBuyerSignDeal">
+	   			<parameter name="execution" value="Mandatory"/>
+	   			<parameter name="sheet" value="Login Buyer 2"/>
+	   		</class>	
+	   			
+	   		<class name = "com.avesdo.tests.cases.TestRealtorSignDeal">
+	   			<parameter name="execution" value="Mandatory"/>
+	   			
+	   		</class>
+	   		
+	   		<class name = "com.avesdo.tests.cases.TestSalesAdminVerifyDeal">
+	   			<parameter name="execution" value="Mandatory"/>
+	   		</class>	   			   						
+	   						
+	   		<class name = "com.avesdo.tests.cases.TestSalesUserCreateContact">
+	   			<parameter name="execution" value="Mandatory"/>
+	   		</class>	
+
+	   		<class name = "com.avesdo.tests.cases.TestAllocateUnitUsingLeftClick">
+	   			<parameter name="execution" value="Mandatory"/>
+	   		</class>	
+	   		
+	   		<class name = "com.avesdo.tests.cases.TestAllocateUnitUsingRightClick">
+	   			<parameter name="execution" value="Mandatory"/>
+	   		</class>	
+	   			   		
+	   		<class name = "com.avesdo.tests.cases.TestUnAllocateUnitUsingRightClick">
+	   			<parameter name="execution" value="Mandatory"/>
+	   		</class>	
+	   		
+	   		<class name = "com.avesdo.tests.cases.TestMasterReportDownload">
+	   			<parameter name="execution" value="Mandatory"/>
+	   		</class>
+	   		   
+	   		<class name = "com.avesdo.tests.cases.TestListUnitPublicUsingRightClick">
+	   			<parameter name="execution" value="Mandatory"/>
+	   		</class>		   
+	   		
+	   		<class name = "com.avesdo.tests.cases.TestListUnitPrivateUsingRightClick">
+	   			<parameter name="execution" value="Mandatory"/>
+	   		</class>	
+			
+			<!-- 
+ 	   		<class name = "com.avesdo.tests.cases.TestDeveloperSignDeal">
+	   			<parameter name="execution" value="Mandatory"/>
+	   		</class>				
+			-->	   		
+	   			
+	   	</classes>
+	</test>
+
+	<!-- 
+	<test name = "Edge Based " preserve-order="true" parallel="false" verbose="1">
+		<parameter name="browser" value="Edge" />
+	  	<classes>	   		
+	   		<class name = "com.avesdo.tests.cases.TestAddStaff">
+	   			<parameter name="execution" value="optional"/>
+	   		</class>
+	   		<class name = "com.avesdo.tests.cases.TestCreateNewDeal">
+	   			<parameter name="execution" value="Mandatory"/>
+	   		</class>
+	   	</classes>
+	</test> 
+	 -->
+</suite>

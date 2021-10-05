@@ -1,0 +1,384 @@
+{
+	"triggers": [
+		{
+			"branchFilters": [
+				"+thinkperfect"
+			],
+			"pathFilters": [],
+			"batchChanges": false,
+			"maxConcurrentBuildsPerBranch": 1,
+			"pollingInterval": 0,
+			"triggerType": 2
+		}
+	],
+	"variables": {
+		"Automation_QA_Execution_Status": {
+			"value": "FALSE"
+		},
+		"BuildConfiguration": {
+			"value": "release",
+			"allowOverride": true
+		},
+		"BuildPlatform": {
+			"value": "any cpu",
+			"allowOverride": true
+		},
+		"chromeDriverPath": {
+			"value": "chromedriver/chromedriver.exe"
+		},
+		"Client_URL": {
+			"value": "https://avesdo-qa.azurewebsites.net/"
+		},
+		"edgeDriverPath": {
+			"value": "edgedriver/msedgedriver.exe"
+		},
+		"extentout": {
+			"value": "Reports/Spark.html"
+		},
+		"extentstart": {
+			"value": "true"
+		},
+		"smtpfrom": {
+			"value": "thinkperfectauto@gmail.com"
+		},
+		"smtphost": {
+			"value": "smtp.gmail.com"
+		},
+		"smtppassword": {
+			"value": "ThinkAuto$2021"
+		},
+		"smtpto": {
+			"value": "akrishna@thinkperfect.io"
+		},
+		"system.debug": {
+			"value": "false",
+			"allowOverride": true
+		}
+	},
+	"properties": {},
+	"tags": [],
+	"_links": {
+		"self": {
+			"href": "https://dev.azure.com/avesdotech/55635139-b381-4ed5-871b-d71e7eaf7d02/_apis/build/Definitions/52?revision=37"
+		},
+		"web": {
+			"href": "https://dev.azure.com/avesdotech/55635139-b381-4ed5-871b-d71e7eaf7d02/_build/definition?definitionId=52"
+		},
+		"editor": {
+			"href": "https://dev.azure.com/avesdotech/55635139-b381-4ed5-871b-d71e7eaf7d02/_build/designer?id=52&_a=edit-build-definition"
+		},
+		"badge": {
+			"href": "https://dev.azure.com/avesdotech/55635139-b381-4ed5-871b-d71e7eaf7d02/_apis/build/status/52"
+		}
+	},
+	"buildNumberFormat": "$(date:yyyyMMdd)$(rev:.r)",
+	"comment": "Variable",
+	"jobAuthorizationScope": 1,
+	"jobTimeoutInMinutes": 60,
+	"jobCancelTimeoutInMinutes": 5,
+	"process": {
+		"phases": [
+			{
+				"steps": [
+					{
+						"environment": {},
+						"enabled": true,
+						"continueOnError": false,
+						"alwaysRun": false,
+						"displayName": "Replace tokens in **/*setup.properties",
+						"timeoutInMinutes": 0,
+						"condition": "succeeded()",
+						"task": {
+							"id": "a8515ec8-7254-4ffd-912c-86772e2b5962",
+							"versionSpec": "3.*",
+							"definitionType": "task"
+						},
+						"inputs": {
+							"rootDirectory": "",
+							"targetFiles": "**/*setup.properties",
+							"encoding": "auto",
+							"writeBOM": "true",
+							"escapeType": "auto",
+							"escapeChar": "",
+							"charsToEscape": "",
+							"verbosity": "normal",
+							"actionOnMissing": "warn",
+							"keepToken": "false",
+							"tokenPrefix": "_av_",
+							"tokenSuffix": "_av_",
+							"useLegacyPattern": "false",
+							"emptyValue": "(empty)",
+							"defaultValue": "",
+							"enableTransforms": "true",
+							"transformPrefix": "(",
+							"transformSuffix": ")",
+							"variableFiles": "",
+							"variableSeparator": ".",
+							"enableTelemetry": "true"
+						}
+					},
+					{
+						"environment": {},
+						"enabled": true,
+						"continueOnError": false,
+						"alwaysRun": false,
+						"displayName": "Maven Avesdo/pom.xml",
+						"timeoutInMinutes": 0,
+						"condition": "succeeded()",
+						"task": {
+							"id": "ac4ee482-65da-4485-a532-7b085873e532",
+							"versionSpec": "3.*",
+							"definitionType": "task"
+						},
+						"inputs": {
+							"mavenPOMFile": "Avesdo/pom.xml",
+							"goals": "clean install",
+							"options": "",
+							"publishJUnitResults": "true",
+							"testResultsFiles": "**/TEST-*.xml",
+							"testRunTitle": "",
+							"allowBrokenSymbolicLinks": "true",
+							"codeCoverageTool": "None",
+							"classFilter": "",
+							"classFilesDirectories": "",
+							"srcDirectories": "",
+							"failIfCoverageEmpty": "false",
+							"restoreOriginalPomXml": "false",
+							"javaHomeSelection": "JDKVersion",
+							"jdkVersion": "default",
+							"jdkUserInputPath": "",
+							"jdkArchitecture": "x64",
+							"mavenVersionSelection": "Default",
+							"mavenPath": "",
+							"mavenSetM2Home": "false",
+							"mavenOpts": "-Xmx1024m",
+							"mavenFeedAuthenticate": "false",
+							"skipEffectivePom": "false",
+							"sqAnalysisEnabled": "false",
+							"isJacocoCoverageReportXML": "false",
+							"sqMavenPluginVersionChoice": "latest",
+							"checkstyleAnalysisEnabled": "false",
+							"pmdAnalysisEnabled": "false",
+							"findbugsAnalysisEnabled": "false"
+						}
+					},
+					{
+						"environment": {},
+						"enabled": true,
+						"continueOnError": false,
+						"alwaysRun": false,
+						"displayName": "Copy Files to: $(build.artifactstagingdirectory)",
+						"timeoutInMinutes": 0,
+						"condition": "succeeded()",
+						"task": {
+							"id": "5bfb729a-a7c8-4a78-a7c3-8d717bb7c13c",
+							"versionSpec": "2.*",
+							"definitionType": "task"
+						},
+						"inputs": {
+							"SourceFolder": "",
+							"Contents": "**",
+							"TargetFolder": "$(build.artifactstagingdirectory)",
+							"CleanTargetFolder": "false",
+							"OverWrite": "false",
+							"flattenFolders": "false",
+							"preserveTimestamp": "false",
+							"retryCount": "0",
+							"delayBetweenRetries": "1000",
+							"ignoreMakeDirErrors": "false"
+						}
+					},
+					{
+						"environment": {},
+						"enabled": true,
+						"continueOnError": false,
+						"alwaysRun": false,
+						"displayName": "Publish Artifact: offplanAutomation",
+						"timeoutInMinutes": 0,
+						"condition": "succeeded()",
+						"task": {
+							"id": "2ff763a7-ce83-4e1f-bc89-0ae63477cebe",
+							"versionSpec": "1.*",
+							"definitionType": "task"
+						},
+						"inputs": {
+							"PathtoPublish": "$(Build.ArtifactStagingDirectory)",
+							"ArtifactName": "offplanAutomation",
+							"ArtifactType": "Container",
+							"TargetPath": "",
+							"Parallel": "false",
+							"ParallelCount": "8",
+							"FileCopyOptions": "",
+							"StoreAsTar": "false"
+						}
+					},
+					{
+						"environment": {},
+						"enabled": true,
+						"continueOnError": false,
+						"alwaysRun": false,
+						"displayName": "Command Line Script",
+						"timeoutInMinutes": 0,
+						"condition": "succeeded()",
+						"task": {
+							"id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
+							"versionSpec": "2.*",
+							"definitionType": "task"
+						},
+						"inputs": {
+							"script": "echo Before Execution status =  %Automation_QA_Execution_Status%\n",
+							"workingDirectory": "",
+							"failOnStderr": "false"
+						}
+					},
+					{
+						"environment": {},
+						"enabled": true,
+						"continueOnError": false,
+						"alwaysRun": false,
+						"displayName": "Setting BuildStatus",
+						"timeoutInMinutes": 0,
+						"condition": "succeeded()",
+						"task": {
+							"id": "bfc8bf76-e7ac-4a8c-9a55-a944a9f632fd",
+							"versionSpec": "1.*",
+							"definitionType": "task"
+						},
+						"inputs": {
+							"filename": "Avesdo/Resources/update.bat",
+							"arguments": "$(Build.ArtifactStagingDirectory)",
+							"modifyEnvironment": "False",
+							"workingFolder": "",
+							"failOnStandardError": "false"
+						}
+					},
+					{
+						"environment": {},
+						"enabled": true,
+						"continueOnError": false,
+						"alwaysRun": false,
+						"displayName": "Command Line Script",
+						"timeoutInMinutes": 0,
+						"condition": "succeeded()",
+						"task": {
+							"id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
+							"versionSpec": "2.*",
+							"definitionType": "task"
+						},
+						"inputs": {
+							"script": "echo  After Execution status =  %Automation_QA_Execution_Status%\n\n\n",
+							"workingDirectory": "",
+							"failOnStderr": "false"
+						}
+					}
+				],
+				"name": "Agent job 1",
+				"refName": "Job_1",
+				"condition": "succeeded()",
+				"target": {
+					"executionOptions": {
+						"type": 0
+					},
+					"allowScriptsAuthAccessOption": false,
+					"type": 1
+				},
+				"jobAuthorizationScope": 1
+			}
+		],
+		"target": {
+			"agentSpecification": {
+				"identifier": "windows-2019"
+			}
+		},
+		"type": 1
+	},
+	"repository": {
+		"properties": {
+			"apiUrl": "https://api.bitbucket.org/2.0/repositories/FarnamMohasseb/avesdooffplantestautomation",
+			"branchesUrl": "https://api.bitbucket.org/2.0/repositories/FarnamMohasseb/avesdooffplantestautomation/refs/branches",
+			"cloneUrl": "https://bitbucket.org/FarnamMohasseb/avesdooffplantestautomation.git",
+			"connectedServiceId": "e910cda2-0b31-48a7-9ced-cfd1c6d03195",
+			"defaultBranch": "master",
+			"fullName": "FarnamMohasseb/avesdooffplantestautomation",
+			"isFork": "False",
+			"isPrivate": "True",
+			"lastUpdated": "8/16/2021 12:14:46 PM",
+			"manageUrl": "https://bitbucket.org/FarnamMohasseb/avesdooffplantestautomation",
+			"ownerAvatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:de7a4403-35b9-420b-958f-744b4da372a5/ec4bf3b3-f84e-4e18-b7a0-4eebeb7e6127/128",
+			"shortName": "avesdooffplantestautomation",
+			"checkoutNestedSubmodules": "false",
+			"cleanOptions": "0",
+			"fetchDepth": "0",
+			"gitLfsSupport": "false",
+			"reportBuildStatus": "true",
+			"skipSyncSource": "false",
+			"labelSourcesFormat": "$(build.buildNumber)",
+			"labelSources": "0"
+		},
+		"id": "FarnamMohasseb/avesdooffplantestautomation",
+		"type": "Bitbucket",
+		"name": "FarnamMohasseb/avesdooffplantestautomation",
+		"url": "https://bitbucket.org/FarnamMohasseb/avesdooffplantestautomation.git",
+		"defaultBranch": "thinkperfect",
+		"clean": "false",
+		"checkoutSubmodules": false
+	},
+	"processParameters": {
+		"dataSourceBindings": [
+			{
+				"dataSourceName": "AzureRMWebAppNames",
+				"parameters": {},
+				"endpointId": "$(connectedServiceName)",
+				"target": "WebAppName"
+			}
+		]
+	},
+	"quality": 1,
+	"authoredBy": {
+		"displayName": "Anil Krishna",
+		"url": "https://spsprodcca1.vssps.visualstudio.com/A5a2702e6-fdbc-4481-b19e-db5c2497f2b7/_apis/Identities/2de1c87d-21a1-4d06-8e20-704a9c2842d1",
+		"_links": {
+			"avatar": {
+				"href": "https://dev.azure.com/avesdotech/_apis/GraphProfile/MemberAvatars/aad.NDA4OWFjZjktMzA1ZS03N2ZlLWIxOWEtMDcxNzA2M2ZiN2Jk"
+			}
+		},
+		"id": "2de1c87d-21a1-4d06-8e20-704a9c2842d1",
+		"uniqueName": "akrishna@thinkperfect.io",
+		"imageUrl": "https://dev.azure.com/avesdotech/_apis/GraphProfile/MemberAvatars/aad.NDA4OWFjZjktMzA1ZS03N2ZlLWIxOWEtMDcxNzA2M2ZiN2Jk",
+		"descriptor": "aad.NDA4OWFjZjktMzA1ZS03N2ZlLWIxOWEtMDcxNzA2M2ZiN2Jk"
+	},
+	"drafts": [],
+	"queue": {
+		"_links": {
+			"self": {
+				"href": "https://dev.azure.com/avesdotech/_apis/build/Queues/20"
+			}
+		},
+		"id": 20,
+		"name": "Azure Pipelines",
+		"url": "https://dev.azure.com/avesdotech/_apis/build/Queues/20",
+		"pool": {
+			"id": 11,
+			"name": "Azure Pipelines",
+			"isHosted": true
+		}
+	},
+	"id": 52,
+	"name": "QA Automation R&D (Think Perfect)",
+	"url": "https://dev.azure.com/avesdotech/55635139-b381-4ed5-871b-d71e7eaf7d02/_apis/build/Definitions/52?revision=37",
+	"uri": "vstfs:///Build/Definition/52",
+	"path": "\\Avesdo Test",
+	"type": 2,
+	"queueStatus": 0,
+	"revision": 37,
+	"createdDate": "2021-08-19T13:44:34.513Z",
+	"project": {
+		"id": "55635139-b381-4ed5-871b-d71e7eaf7d02",
+		"name": "Core",
+		"url": "https://dev.azure.com/avesdotech/_apis/projects/55635139-b381-4ed5-871b-d71e7eaf7d02",
+		"state": 1,
+		"revision": 29,
+		"visibility": 0,
+		"lastUpdateTime": "2019-07-30T18:03:59.573Z"
+	}
+}
